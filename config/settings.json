@@ -1,0 +1,13 @@
+{
+  "env": {
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6[1M]",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8[1M]"
+  },
+  "model": "sonnet",
+  "includeCoAuthoredBy": false,
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "planning-with-files@planning-with-files": true
+  }
+}

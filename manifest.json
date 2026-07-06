@@ -1,0 +1,76 @@
+{
+  "$schema": "./manifest.schema.json",
+  "name": "agent-profile-pack",
+  "version": "2.0.0",
+  "description": "Claude Code agent profile — memory layer, skills workflow, cross-platform config. Clone + install = full auto-config.",
+  "compatibility": {
+    "agent": "claude-code",
+    "platforms": ["macos", "linux", "windows-11"],
+    "minAgentVersion": ">= 2.0.0"
+  },
+  "capabilities": {
+    "memory": {
+      "tiers": ["global-CLAUDE.md", "project-CLAUDE.md", "runtime-rules"],
+      "files": 4,
+      "format": "frontmatter-markdown-indexed"
+    },
+    "skills": {
+      "families": {
+        "comet": {
+          "count": 10,
+          "type": "workflow-engine",
+          "description": "Staged dev: open → design → build → verify → archive. 1 router + 7 scripts + 8 ref docs + 2 presets."
+        },
+        "openspec": {
+          "count": 11,
+          "type": "change-management",
+          "description": "Structured change management with artifact chain. 11 SKILL.md files at top level."
+        },
+        "anysearch": {
+          "count": 1,
+          "type": "utility",
+          "description": "Unified search: web, batch, URL extraction. Cross-platform python/js/bash/powershell."
+        }
+      },
+      "total": 31,
+      "format": "SKILL.md with YAML frontmatter + companion scripts"
+    },
+    "plugins": {
+      "installed": [
+        {"name": "caveman", "skills": 6, "agents": 3, "commands": 1, "marketplace": "caveman@caveman"},
+        {"name": "planning-with-files", "skills": 8, "marketplace": "planning-with-files@planning-with-files"}
+      ],
+      "autoEnabled": true
+    },
+    "mcp": {
+      "servers": [
+        {"name": "codegraph", "tools": ["codegraph_explore"], "purpose": "codebase symbol search"},
+        {"name": "headroom", "tools": ["headroom_compress", "headroom_retrieve", "headroom_stats"], "purpose": "context window compression"}
+      ],
+      "configPath": "~/.claude/mcp.json",
+      "crossPlatform": true
+    },
+    "config": {
+      "modelRouting": "env-based",
+      "permissionModel": "allowlist",
+      "hooks": ["pre-tool-use-guard (comet-hook-guard)"],
+      "autoInstallSteps": 5
+    },
+    "installer": {
+      "posix": "install.sh",
+      "windows": "install.ps1",
+      "steps": [
+        "Copy CLAUDE.md + rules → ~/.claude/",
+        "Copy all skills → ~/.claude/skills/",
+        "Enable plugins in settings.json",
+        "Configure comet-hook-guard in settings.local.json",
+        "Print MCP reference"
+      ]
+    }
+  },
+  "dependencies": {
+    "required": ["git"],
+    "optional": ["python3", "node", "pnpm"],
+    "recommendedPlugins": ["caveman@caveman", "planning-with-files@planning-with-files"]
+  }
+}
