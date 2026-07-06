@@ -39,34 +39,40 @@ agent-profile-pack/
 ├── skills/
 │   ├── README.md                   ← Skill catalog with activation triggers
 │   │
-│   ├── comet/                      ★ WORKFLOW ENGINE ★
-│   │   ├── SKILL.md                ← Router/dispatcher
-│   │   ├── scripts/                ← 7 shell scripts (guard, state, handoff, etc.)
-│   │   └── reference/              ← 8 docs (decision points, auto-transition, etc.)
+│   ├── comet/           ★ 9 skills ★ Workflow engine
+│   │   ├── SKILL.md + 7 scripts + 8 ref docs
+│   ├── comet-open/ ...
+│   ├── comet-design/ ...
+│   ├── comet-build/ ...
+│   ├── comet-verify/ ...
+│   ├── comet-archive/ ...
+│   ├── comet-hotfix/ ...
+│   ├── comet-tweak/ ...
 │   │
-│   ├── comet-open/                 ← Phase: open
-│   ├── comet-design/               ← Phase: design
-│   ├── comet-build/                ← Phase: build
-│   ├── comet-verify/               ← Phase: verify
-│   ├── comet-archive/              ← Phase: archive
-│   ├── comet-hotfix/               ← Preset: hotfix (skip design)
-│   ├── comet-tweak/                ← Preset: tweak (lightweight)
+│   ├── openspec-new-change/ ...    ★ 11 skills ★ Change management
+│   ├── openspec-propose/ ...
+│   ├── openspec-explore/ ...
+│   ├── openspec-ff-change/ ...
+│   ├── openspec-continue-change/ ...
+│   ├── openspec-apply-change/ ...
+│   ├── openspec-verify-change/ ...
+│   ├── openspec-archive-change/ ...
+│   ├── openspec-bulk-archive-change/ ...
+│   ├── openspec-sync-specs/ ...
+│   ├── openspec-onboard/ ...
 │   │
-│   ├── openspec-new-change/       ← Step-by-step change creation
-│   ├── openspec-propose/          ← One-shot proposal + artifacts
-│   ├── openspec-explore/          ← Explore mode (thinking partner)
-│   ├── openspec-ff-change/        ← Fast-forward artifact generation
-│   ├── openspec-continue-change/  ← Next artifact
-│   ├── openspec-apply-change/     ← Execute implementation tasks
-│   ├── openspec-verify-change/    ← Validate implementation
-│   ├── openspec-archive-change/   ← Finalize and archive
-│   ├── openspec-bulk-archive-change/ ← Batch archive
-│   ├── openspec-sync-specs/       ← Sync delta specs
-│   ├── openspec-onboard/          ← Guided walkthrough for new users
-│   │
-│   └── anysearch/                  ★ SEARCH ★
-│       ├── SKILL.md                ← Unified search instructions
-│       └── scripts/                ← Python, JS, PowerShell, Bash clients
+│   ├── anysearch/       ★ 1 skill ★ Unified search
+│   ├── brainstorming/   ★ 1 skill ★ Creative exploration
+│   ├── dispatching-parallel-agents/ ★ 1 skill ★ Task fan-out
+│   ├── grill-me/        ★ 1 skill ★ Adversarial plan review
+│   ├── neat-freak/      ★ 1 skill ★ Document cleanup
+│   ├── teach/           ★ 1 skill ★ Teaching/learning
+│   ├── pua/             ★ 1 skill ★ Escalated effort mode
+│   ├── pdf-converter/   ★ 1 skill ★ PDF → Markdown
+│   ├── web-access/      ★ 1 skill ★ Browser CDP automation
+│   ├── docx/            ★ 1 skill ★ Word documents
+│   ├── pptx/            ★ 1 skill ★ PowerPoint decks
+│   └── xlsx/            ★ 1 skill ★ Spreadsheets
 │
 ├── plugins/
 │   └── README.md                   ← Plugin system documentation
@@ -108,15 +114,41 @@ cd agent-profile-pack && chmod +x install.sh && ./install.sh
 
 ### After Install — What's Ready
 
+**Workflow & management:**
 - `/comet` — Staged dev workflow (open → design → build → verify → archive)
 - `/comet-hotfix` — Quick bug fixes
 - `/comet-tweak` — Small config/docs changes
 - `/openspec-new-change` | `/openspec-propose` — Change management
+- `/openspec-explore` — Thinking partner
+- `/openspec-apply-change` — Execute tasks
+- `/openspec-verify-change` — Validate implementation
+- `/openspec-archive-change` — Archive complete work
+
+**Thinking & planning:**
+- `brainstorming` — Explore requirements before coding
+- `dispatching-parallel-agents` — Fan out independent tasks
+- `grill-me` — Stress-test plans via adversarial interview
+
+**Office & conversion:**
+- `docx` — Word document creation/editing
+- `pptx` — PowerPoint slide decks
+- `xlsx` — Spreadsheet creation/editing
+- `pdf-converter` — PDF to Markdown conversion
+- `web-access` — Browser CDP automation
+
+**Utilities:**
 - `anysearch` — Web search via skill
-- `caveman` — Compressed communication (use `/caveman`)
-- `planning-with-files` — File-based task planning (use `/plan`)
-- **Phase guard** auto-enforces workflow stage rules
-- **CLAUDE.md** encodes engineering principles globally
+- `pua` — Escalated effort mode
+- `teach` — Teaching/learning assistant
+- `neat-freak` — Document cleanup + archiving
+
+**Plugins (auto-enabled):**
+- `caveman` — Compressed communication, commit messages, code review
+- `planning-with-files` — File-based task planning (`/plan`)
+
+**Always active:**
+- Phase guard — auto-enforces workflow stage rules
+- CLAUDE.md — global engineering principles
 
 ---
 
@@ -248,10 +280,13 @@ Other agents: to configure yourself from this pack:
 3. **After install**, your environment has:
    - `~/.claude/CLAUDE.md` — Engineering principles
    - `~/.claude/rules/comet-phase-guard.md` — Stage guard
-   - `~/.claude/skills/comet*` — Workflow engine
-   - `~/.claude/skills/openspec-*` — Change management
-   - `~/.claude/skills/anysearch/` — Search skill
-   - `.claude/settings.json` — Plugins enabled, model configured
+   - `~/.claude/skills/comet*` — Workflow engine (9 skills)
+   - `~/.claude/skills/openspec-*` — Change management (11 skills)
+   - `~/.claude/skills/anysearch/` — Search
+   - `~/.claude/skills/brainstorming/` + `dispatching-parallel-agents/` + `grill-me/` — Thinking skills
+   - `~/.claude/skills/docx/` + `pptx/` + `xlsx/` — Office skills
+   - `~/.claude/skills/pdf-converter/` + `web-access/` + `pua/` + `teach/` + `neat-freak/` — Utility skills
+   - `.claude/settings.json` — Plugins enabled (caveman, planning-with-files)
    - `.claude/settings.local.json` — Hook active
 4. **For platform adaptation:**
    - Windows: use `install.ps1` (PowerShell-based)
@@ -284,7 +319,7 @@ grep PreToolUse ~/.claude/settings.local.json # Hook active
 
 **Comet on Win11:** The 7 bash scripts in `skills/comet/scripts/` won't run natively. Options:
 1. Use WSL (recommended)
-2. Port scripts to PowerShell (see `adapters/win11/` in future releases)
+2. Port scripts to PowerShell (manual port needed)
 3. Run Comet workflow via OpenSpec skills (SKILL.md-only, no scripts needed)
 
 ---
